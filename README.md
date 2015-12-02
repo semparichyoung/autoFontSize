@@ -3,7 +3,7 @@ $(target).autoFontSize(option);
 ```
 
 
-
+```
  option:
  	maxFontSize:	the maximum size of font size
  		default:	110
@@ -22,4 +22,4 @@ $(target).autoFontSize(option);
 
  	returnCSS:		if true, will return the css code. If false, add css to target and return target
  		default:	true
-
+```
