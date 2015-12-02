@@ -17,6 +17,9 @@ $.fn.extend({
 		// 	center:			does it need to put to location(by left and top)
 		// 		default:	false
 		//
+		// 	returnCSS:		if true, will return the css code. If false, add css to target and return target
+		// 		default:	true
+		//
 		var t = this;
 		var opt = opt || {};
 		var area = $("body").append("<div id='autoFontArea' style='display:none'></div>")
@@ -70,7 +73,10 @@ $.fn.extend({
 			css["left"] = (width - area.width()) / 2;
 			css["top"] = Math.max(0, (height - area.height()) / 2);
 		}
-		console.log(css);
-		return css;
+		if(opt.returnCss) {
+			return css;
+		}else {
+			return t.css(css);
+		}
 	}
 });
