@@ -32,8 +32,8 @@ $.fn.extend({
 			.children("#autoFontArea");
 		var css = {};
 
-		var width = t.width() * (obj.wScale || 1);
-		var height = t.height() * (obj.hScale || 1);
+		var width = t.width() * (opt.wScale || 1);
+		var height = t.height() * (opt.hScale || 1);
 		var max = opt.maxFontSize || 110;
 		var min = opt.minFontSize || 10;
 		var limit = opt.spacing || 5;
