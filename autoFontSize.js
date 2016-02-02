@@ -20,14 +20,20 @@ $.fn.extend({
 		// 	returnCSS:		if true, will return the css code. If false, add css to target and return target
 		// 		default:	true
 		//
+		// 	wScale:			width scale value
+		// 		default		1
+		//
+		// 	hScale:			height scale value
+		// 		default		1
+		//
 		var t = this;
 		var opt = opt || {};
 		var area = $("body").append("<div id='autoFontArea' style='display:none'></div>")
 			.children("#autoFontArea");
 		var css = {};
 
-		var width = t.width();
-		var height = t.height();
+		var width = t.width() * (obj.wScale || 1);
+		var height = t.height() * (obj.hScale || 1);
 		var max = opt.maxFontSize || 110;
 		var min = opt.minFontSize || 10;
 		var limit = opt.spacing || 5;
@@ -47,7 +53,7 @@ $.fn.extend({
 				"font-size": font
 			});
 
-			if(area.width() > width && font > minF && font - minF > limit) {
+			if(area.width() > width && font > min && font - min > limit) {
 				max = font;
 				return testFontSize(min + (font - min) / 2);
 			}
@@ -58,10 +64,11 @@ $.fn.extend({
 				"font-size": font
 			});
 			if(area.height() > height && font > min && font - min > limit) {
-				maxF = font;
+				max = font;
 				return testFontSize(min + (font - min) / 2);
 			}else {
-				return max;
+				min = font;
+				return testFontSize(font + (max - font) / 2);
 			}
 		}
 		if(center) {
