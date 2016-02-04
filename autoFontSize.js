@@ -14,11 +14,8 @@ $.fn.extend({
 		// 	content:		the text which need to change size
 		// 		default:	target's text
 		//
-		// 	center:			does it need to put to location(by left and top)
+		// 	center:			does it need to put to location(can choose center, vertical or horizontal)
 		// 		default:	false
-		//
-		// 	returnCSS:		if true, will return the css code. If false, add css to target and return target
-		// 		default:	true
 		//
 		// 	wScale:			width scale value
 		// 		default		1
@@ -77,13 +74,15 @@ $.fn.extend({
 				height: "auto",
 				"font-size": css["font-size"]
 			});
-			css["left"] = (width - area.width()) / 2;
-			css["top"] = Math.max(0, (height - area.height()) / 2);
+			if(center == "center") {
+				css["left"] = (width - area.width()) / 2;
+				css["top"] = Math.max(0, (height - area.height()) / 2);
+			}else if(center == "vertical") {
+				css["top"] = Math.max(0, (height - area.height()) / 2);
+			}else if(center == "horizontal") {
+				css["left"] = (width - area.width()) / 2;
+			}
 		}
-		if(opt.returnCss) {
-			return css;
-		}else {
-			return t.css(css);
-		}
+		return t.css(css);
 	}
 });
