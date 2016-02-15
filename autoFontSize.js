@@ -83,6 +83,7 @@ $.fn.extend({
 				css["left"] = (width - area.width()) / 2;
 			}
 		}
+		area.remove();
 		return t.css(css);
 	}
 });
